@@ -1,0 +1,19 @@
+---
+- name: Testing 
+  host: all
+  gather_facts: false
+  tasks:
+    - name: Ping Devices
+      ansible.builtin.ping:
+
+- name: Show Version
+  hosts: switches
+  gather_facts: false
+  tasks:
+    - name: Run show version
+      arubanetworks.aoscx.aoscx_command:
+       commands:
+       - show version
+    - name: Display output
+      debug:
+        var: output.stdout_lines
